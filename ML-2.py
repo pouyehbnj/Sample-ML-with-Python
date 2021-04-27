@@ -12,9 +12,15 @@ print("shape of data")
 print(data.shape)
 
 #### class distribution
+print("class distribution")
 for headername in headernames:
     count_class = data.groupby(headername).size()
     print(count_class)
+
+### features correlations
+print("features correlations")
+correlations = data.corr(method='pearson')
+print(correlations)
 
 
 
