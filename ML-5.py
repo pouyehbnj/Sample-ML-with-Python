@@ -2,7 +2,14 @@ from sklearn.cluster import KMeans
 from pandas import read_csv
 from sklearn import preprocessing
 import matplotlib.pyplot as plt
-
+from sklearn.linear_model import LinearRegression
+from sklearn import datasets
+import matplotlib.pyplot as plt
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+from sklearn.preprocessing import PolynomialFeatures
 
 path = r".\imports-85.data"
 headernames = ['symboling' , 'normalized-losses', 'make','fuel-type', 'aspiration', 'num-of-doors', 'body-style', 'drive-wheels',
@@ -29,11 +36,21 @@ dataset=dataset.fillna(-999)
 X = dataset.drop('price', axis=1)
 Y = dataset['price']
 
-kmeans = KMeans(n_clusters = 3)
-kmeans.fit(X)
-y_kmeans = kmeans.predict(X)
 
-plt.scatter(X.iloc[:, 0], X.iloc[:, 1], c = y_kmeans, s = 20, cmap = 'summer')
-centers = kmeans.cluster_centers_
-plt.scatter(centers[:, 0], centers[:, 1], c = 'blue', s = 100, alpha = 0.9);
-plt.show()
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.20)
+classifier = DecisionTreeClassifier()
+classifier.fit(X_train, y_train)
+# y_pred = classifier.predict(X_test)
+# ### confusion_matrix
+# result = confusion_matrix(y_test, y_pred)
+# print(result)
+regressor = LinearRegression()
+
+regressor.fit(X_train, y_train)
+y_pred = regressor.predict(X_test)
+print(y_pred)
+
+poly_reg = PolynomialFeatures(degree=4)
+X_poly = poly_reg.fit_transform(X)
+pol_reg = LinearRegression()
+pol_reg.fit(X_poly, Y)
