@@ -11,4 +11,10 @@ print(data.head(50))
 print("shape of data")
 print(data.shape)
 
-####
+#### class distribution
+for headername in headernames:
+    count_class = data.groupby(headername).size()
+    print(count_class)
+
+
+
