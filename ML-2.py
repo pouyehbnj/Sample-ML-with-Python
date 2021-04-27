@@ -1,5 +1,8 @@
 from pandas import read_csv
 import seaborn as sns
+from matplotlib import pyplot
+
+
 path = r".\imports-85.data"
 headernames = ['symboling','normalized-losses','make','num-of-doors','body-style','drive-wheels',
 'engine-location','wheel-base','length','width','height','curb-weight','engine-type','num-of-cylinders',
@@ -30,7 +33,14 @@ print(correlations)
 ### feature scatter plot
 
 print("feature scatter plot")
-sns.pairplot(data, hue="species")
+
+
+
+### density diagram
+data.plot(kind='density', subplots=True, layout=(3,3), sharex=False)
+pyplot.show()
+
+
 
 
 
