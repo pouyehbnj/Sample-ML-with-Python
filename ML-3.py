@@ -30,8 +30,25 @@ data['fuel-system'] = number.fit_transform(data['fuel-system'])
 data=data.fillna(-999)
 
 #DecisionTreeClassifier
-X = data.drop('price', axis=1)
-y = data['price']
+X = data.drop('num-of-cylinders', axis=1)
+y = data['num-of-cylinders']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
+classifier = DecisionTreeClassifier()
+classifier.fit(X_train, y_train)
+
+#prediction
+y_pred = classifier.predict(X_test)
+print(y_pred)
+
+### confusion_matrix
+result = confusion_matrix(y_test, y_pred)
+print(result)
+print(classification_report(y_test, y_pred))
+
+##prediction with some columns
+#DecisionTreeClassifier
+X = data.drop(['num-of-cylinders','fuel-type','wheel-base','height','horsepower'], axis=1)
+y = data['num-of-cylinders']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
 classifier = DecisionTreeClassifier()
 classifier.fit(X_train, y_train)

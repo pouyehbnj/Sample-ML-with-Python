@@ -12,7 +12,7 @@ headernames = ['symboling' , 'normalized-losses', 'make','fuel-type', 'aspiratio
 dataset = read_csv(path, names=headernames)
 number = preprocessing.LabelEncoder()
 dataset['make'] = number.fit_transform(dataset['make'])
-dataset['fuel-type'] = number.fit_transform(dataset['fuel-type'])
+##dataset['fuel-type'] = number.fit_transform(dataset['fuel-type'])
 dataset['aspiration'] = number.fit_transform(dataset.aspiration)
 dataset['num-of-doors'] = number.fit_transform(dataset['num-of-doors'])
 dataset['body-style'] = number.fit_transform(dataset['body-style'])
@@ -26,8 +26,8 @@ dataset['fuel-system'] = number.fit_transform(dataset['fuel-system'])
 
 # dataset['engine-size'] = number.fit_transform(dataset.engine-size)
 dataset=dataset.fillna(-999)
-X = dataset.drop('price', axis=1)
-Y = dataset['price']
+X = dataset.drop('fuel-type', axis=1)
+Y = dataset['fuel-type']
 
 kmeans = KMeans(n_clusters = 3)
 kmeans.fit(X)
