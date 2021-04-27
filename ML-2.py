@@ -40,3 +40,4 @@ plt.show()
 # density diagram
 data.plot(kind='density', subplots=True, layout=(3, 3), sharex=False)
 pyplot.show()
+
