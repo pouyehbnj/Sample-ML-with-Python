@@ -1,4 +1,5 @@
 from pandas import read_csv
+import seaborn as sns
 path = r".\imports-85.data"
 headernames = ['symboling','normalized-losses','make','num-of-doors','body-style','drive-wheels',
 'engine-location','wheel-base','length','width','height','curb-weight','engine-type','num-of-cylinders',
@@ -17,10 +18,21 @@ for headername in headernames:
     count_class = data.groupby(headername).size()
     print(count_class)
 
+#### features types
+print("features types")
+print(data.dtypes)
+
 ### features correlations
 print("features correlations")
 correlations = data.corr(method='pearson')
 print(correlations)
+
+### feature scatter plot
+
+print("feature scatter plot")
+sns.pairplot(data, hue="species")
+
+
 
 
 
