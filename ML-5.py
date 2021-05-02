@@ -47,6 +47,8 @@ classifier.fit(X_train, y_train)
 regressor = LinearRegression()
 
 regressor.fit(X_train, y_train)
+print(regressor.intercept_)
+
 y_pred = regressor.predict(X_test)
 print(y_pred)
 
@@ -54,3 +56,13 @@ poly_reg = PolynomialFeatures(degree=4)
 X_poly = poly_reg.fit_transform(X)
 pol_reg = LinearRegression()
 pol_reg.fit(X_poly, Y)
+# dataset.plot(x='make', y='price', style='o')
+# plt.title('Hours vs Percentage')
+# plt.xlabel('Hours Studied')
+# plt.ylabel('Percentage Score')
+# plt.show()
+
+plt.scatter(X_poly, Y,color='g')
+plt.plot(X, pol_reg.predict(X),color='k')
+
+plt.show()
